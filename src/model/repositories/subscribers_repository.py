@@ -1,8 +1,9 @@
 from src.model.configs.connection import DBConnetionHandler
 from src.model.entities.inscritos import Inscritos
+from .interfaces.subscribers_repository import SubscribersRepositoryInterface
 
 
-class SubscribersRepository:
+class SubscribersRepository(SubscribersRepositoryInterface):
    def insert(self, subscriber_infos:dict) -> None: #dict> dicionário (colação de elementos)
       with DBConnetionHandler() as db:
          try:
