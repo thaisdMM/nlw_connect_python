@@ -19,3 +19,16 @@ class SubscribersRepository:
             db.session.rollback() #volta ao estado anterior se der algum erro, é recomendável em caso de inserção, alteração ou deleção no banco de dados
             raise exception
          
+         #busca
+         
+   def select_subscriber(self, email: str, evento_id: int) -> Inscritos:
+      with DBConnetionHandler() as db:
+         data  = (
+            db.session
+            .query(Inscritos)
+            .filter(
+               Inscritos.email == email, 
+               Inscritos.evento_id == evento_id)
+            .one_or_none()
+         )
+         return data
