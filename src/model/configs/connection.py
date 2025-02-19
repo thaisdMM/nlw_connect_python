@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine # para fazer uma engine de conexão
+from sqlalchemy.orm import sessionmaker
 
 #classe para organizar a conexão com o nosso banco de dados
 
