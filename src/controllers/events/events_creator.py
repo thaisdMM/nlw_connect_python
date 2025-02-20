@@ -35,6 +35,6 @@ class EventsCreator:
                   "event_name": event_name
                }
             }
-         }
+         },
          status_code=201
       )
