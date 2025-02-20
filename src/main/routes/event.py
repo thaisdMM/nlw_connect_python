@@ -11,7 +11,7 @@ from src.http_types.http_request import HttpRequest
 def create_new_event():
 
    htpp_request = HttpRequest(body=request.json) #tira o body da requisição. Coleta só que é necessário da framework
-   print(htpp_request.body)
+
 
    http_response = HttpResponse(body={"estou": "aqui" }, status_code=201) #lógica
 
