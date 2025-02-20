@@ -18,11 +18,9 @@ def create_new_event():
    events_creator_validator(request) #validação
    htpp_request = HttpRequest(body=request.json) #tira o body da requisição. Coleta só que é necessário da framework
 
-   eventos_repo = EventosRepository()
-   events_creator = EventsCreator(eventos_repo)
+   eventos_repo = EventosRepository() #criando a lógica e junto com o repositório do banco de dados
+   events_creator = EventsCreator(eventos_repo) #criando a lógica e junto com o repositório do banco de dados
 
-   response = events_creator.create(htpp_request)
+   http_response = events_creator.create(htpp_request) #executando a lógica 
 
-   http_response = HttpResponse(body={"estou": "aqui" }, status_code=201) #lógica
-
-   return jsonify(http_response.body), http_response.status_code #sempre vai querer esse retorno em todas as rotas
+   return jsonify(http_response.body), http_response.status_code #retornando para o usuário uma informaçao
