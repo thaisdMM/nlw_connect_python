@@ -27,18 +27,16 @@ class SubscribersCreator:
    def __insert_sub(self, subscriber_info: dict) -> None:
       self.__subs_repo.insert(subscriber_info)
 
-   def __format_response(self, subscriber_info: dict) ->HttpResponse:
-      return HttpResponse(
-         #body mais personalizado para ser chamado em um front-end
-         body={
-            "data": {
-               "Type": "Subscriber",
-               "count": 1,
-               "atributes": "subscriber_info"
-            }
-         },
-         status_code=201
-      )
-
+   def __format_response(self, subscriber_info: dict) -> HttpResponse:
+        return HttpResponse(
+            body={
+                "data": {
+                    "Type": "Subscriber",
+                    "count": 1,
+                    "attributes": subscriber_info
+                }
+            },
+            status_code=201
+        )
 
       
