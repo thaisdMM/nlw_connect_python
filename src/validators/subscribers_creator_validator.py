@@ -19,4 +19,4 @@ def subscribers_creator_validator(request: any): #vai ser o mesmo request do fla
   response = body_validator.validate(request.json) #esse body_validator está validando o body do flask
 
   if response is False:
-    print(body_validator.errors)
+    raise Exception(body_validator.errors)
