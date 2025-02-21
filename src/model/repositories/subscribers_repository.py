@@ -51,7 +51,7 @@ class SubscribersRepository(SubscribersRepositoryInterface):
       
    #ranking de links - quem está em primeiro, segundo...; QUERY complexa
 
-   def get_ranking(self, event_id: int) -> tuple:
+   def get_ranking(self, event_id: int) -> list: #vai ser uma lista de tuples
       with DBConnetionHandler() as db:
          result = (
             db.session
