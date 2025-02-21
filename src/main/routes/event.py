@@ -15,11 +15,11 @@ from src.model.repositories.eventos_repository import EventosRepository
 def create_new_event():
 
    events_creator_validator(request) #validação
-   htpp_request = HttpRequest(body=request.json) #tira o body da requisição. Coleta só que é necessário da framework
+   http_request = HttpRequest(body=request.json) #tira o body da requisição. Coleta só que é necessário da framework
 
    eventos_repo = EventosRepository() #criando a lógica e junto com o repositório do banco de dados
    events_creator = EventsCreator(eventos_repo) #criando a lógica e junto com o repositório do banco de dados
 
-   http_response = events_creator.create(htpp_request) #executando a lógica 
+   http_response = events_creator.create(http_request) #executando a lógica 
 
    return jsonify(http_response.body), http_response.status_code #retornando para o usuário uma informaçao
