@@ -21,6 +21,7 @@ def test_select_subscriber():
    resp = subs_repo.select_subscriber(email, evento_id)
    print(resp.nome)
 
+@pytest.mark.skip("Select in DB")
 def test_ranking():
    evento_id = 3
    subs_repo = SubscribersRepository()
