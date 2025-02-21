@@ -1,3 +1,4 @@
+from sqlalchemy import func, desc #func> para contar no ranking de link; desc> ordem decrescente
 from src.model.configs.connection import DBConnetionHandler
 from src.model.entities.inscritos import Inscritos
 from .interfaces.subscribers_repository import SubscribersRepositoryInterface
@@ -47,3 +48,23 @@ class SubscribersRepository(SubscribersRepositoryInterface):
             ).all()
          )
          return data
+      
+   #ranking de links - quem está em primeiro, segundo...; QUERY complexa
+
+   def get_ranking(self, event_id: int) -> tuple:
+      with DBConnetionHandler() as db:
+         result = (
+            db.session
+            .query(
+               Inscritos.link,
+               func.count(Inscritos.id).label("total")
+            )
+            .filter(
+               Inscritos.evento_id == event_id,
+               Inscritos.link.isnot(None) #contar apenas as pessoas que entraram a partir de link: não pode ser nulo
+            )
+            .group_by(Inscritos.link) #agrupar por links, para contar o total
+            .order_by(desc("total")) #ordem decrescente
+            .all()
+         )
+         return result
