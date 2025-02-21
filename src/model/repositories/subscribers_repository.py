@@ -33,3 +33,17 @@ class SubscribersRepository(SubscribersRepositoryInterface):
             .one_or_none()
          )
          return data
+
+   #busca de quantas pessoas e quem são aqueles que se inscreveram a partir do link do inscrito
+
+   def select_subscribers_by_link(self, link: str, event_id: int) -> list:
+      with DBConnetionHandler() as db:
+         data  = (
+            db.session
+            .query(Inscritos)
+            .filter(
+               Inscritos.link == link, 
+               Inscritos.evento_id == event_id
+            ).all()
+         )
+         return data
